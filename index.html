@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+  <meta charset=utf-8>
+  <meta http-equiv=X-UA-Compatible content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+  <title>华农C语言互助平台</title>
+  <link rel=manifest href=/static/manifest.json>
+  <link rel="shortcut icon " type=images/x-icon href=/static/favicon.ico>
+  <meta name=msapplication-TileImage content=/static/icons/icon-192x192.png>
+  <meta name=msapplication-TileColor content=#495060>
+  <meta name=theme-color content=#495060>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-title content=华农C语言互助平台>
+  <link rel="apple-touch-icon" href="/static/icons/icon-192x192.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 320px )" href="/static/launches/apple-launch-640x1136.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 375px )" href="/static/launches/apple-launch-750x1334.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 414px )" href="/static/launches/apple-launch-1242x2208.png">
+  <link rel="apple-touch-startup-image" media="(device-width: 768px )" href="/static/launches/apple-launch-1536x2048.png">
+  <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.2.0/css/all.css integrity=sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ crossorigin=anonymous>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/service-worker.js', {
+          scope: '/'
+        })
+        .then(registration => {
+          window.registration = registration;
+          console.log('sw 注册成功', registration.scope)
+        })
+        .catch(err => {
+          console.log('注册sw失败', err)
+        })
+    }
+
+    if (('standalone' in window.navigator) && window.navigator.standalone) {   
+      var noddy, remotes = false;   
+      document.addEventListener('click', function(event) {       
+        noddy = event.target;       
+        while (noddy.nodeName !== 'A' && noddy.nodeName !== 'HTML')
+          noddy = noddy.parentNode;      
+        if ('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes)) {           
+          event.preventDefault();           
+          document.location.href = noddy.href;       
+        }   
+      }, false); 
+    } 
+
+  </script>
+  <!-- vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script> -->
+  <!-- vueRouter -->
+  <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+  <!-- vuex -->
+  <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- 引入组件库 element -ui -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</body>
+
+</html>
