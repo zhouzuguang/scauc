@@ -1,8 +1,5 @@
-::: hljs-center
-
 ## 华农C语言互助平台*v1.0* 
 
-:::
 ### 首页
 ![01.jpg](http://ctiku.oss-cn-shenzhen.aliyuncs.com/153474252460701.jpg)
 ### 说明
